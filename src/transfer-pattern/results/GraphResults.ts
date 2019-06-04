@@ -1,12 +1,12 @@
-import {ConnectionIndex} from "../raptor/RaptorAlgorithm";
-import {isTransfer} from "../results/ResultsFactory";
-import {StopID} from "../gtfs/GTFS";
-import {TransferPatternResults} from "./TransferPatternGenerator";
+import { ConnectionIndex } from "../../raptor/RaptorAlgorithm";
+import { isTransfer } from "../../results/ResultsFactory";
+import { StopID } from "../../gtfs/GTFS";
+import { Path, TransferPatternResults } from "./TransferPatternResults";
 
 /**
  * Uses the Raptor algorithm to perform full day range queries and stores the result as a DAG.
  */
-export class GraphGenerator implements TransferPatternResults<TransferPatternGraph> {
+export class GraphResults implements TransferPatternResults<TransferPatternGraph> {
   private readonly results: TransferPatternGraph = {};
 
   /**
@@ -87,11 +87,6 @@ export class GraphGenerator implements TransferPatternResults<TransferPatternGra
   }
 
 }
-
-/**
- * A list of stops representing a journeys path
- */
-export type Path = StopID[];
 
 /**
  * Leaf nodes indexed by their label

@@ -1,9 +1,10 @@
 import * as chai from "chai";
-import {RaptorQueryFactory} from "../../../src/raptor/RaptorQueryFactory";
-import {JourneyFactory} from "../../../src/results/JourneyFactory";
-import {allDays, calendars, j, setDefaultTrip, st, t, tf} from "../util";
+import { JourneyFactory } from "../../../src/results/JourneyFactory";
+import { allDays, calendars, j, setDefaultTrip, st, t, tf } from "../util";
+import { RaptorAlgorithmFactory } from "../../../src/raptor/RaptorAlgorithmFactory";
+import { DepartAfterQuery } from "../../../src/query/DepartAfterQuery";
 
-describe("RaptorDepartAfterQuery", () => {
+describe("DepartAfterQuery", () => {
   const journeyFactory = new JourneyFactory();
 
   it("finds journeys with direct connections", () => {
@@ -15,8 +16,9 @@ describe("RaptorDepartAfterQuery", () => {
       )
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -43,8 +45,9 @@ describe("RaptorDepartAfterQuery", () => {
       )
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -71,8 +74,9 @@ describe("RaptorDepartAfterQuery", () => {
       )
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "E", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -101,8 +105,9 @@ describe("RaptorDepartAfterQuery", () => {
       )
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "E", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory, 1);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -122,8 +127,9 @@ describe("RaptorDepartAfterQuery", () => {
       )
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -171,8 +177,9 @@ describe("RaptorDepartAfterQuery", () => {
       ),
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "E", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -215,8 +222,9 @@ describe("RaptorDepartAfterQuery", () => {
       ),
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "E", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -257,8 +265,9 @@ describe("RaptorDepartAfterQuery", () => {
       ),
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "E", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -294,8 +303,9 @@ describe("RaptorDepartAfterQuery", () => {
       ]
     };
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, transfers, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "E", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, transfers, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -332,8 +342,9 @@ describe("RaptorDepartAfterQuery", () => {
       ]
     };
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, transfers, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "D", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, transfers, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "D", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -365,8 +376,9 @@ describe("RaptorDepartAfterQuery", () => {
       )
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -395,8 +407,9 @@ describe("RaptorDepartAfterQuery", () => {
       )
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -431,8 +444,9 @@ describe("RaptorDepartAfterQuery", () => {
     const transfers = {};
     const interchange = { B: 10 };
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, transfers, interchange, calendars, journeyFactory);
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, transfers, interchange, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -484,8 +498,9 @@ describe("RaptorDepartAfterQuery", () => {
 
     const interchange = { B: 10, C: 10 };
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, transfers, interchange, calendars, journeyFactory);
-    const result = raptor.plan("A", "D", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, transfers, interchange, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "D", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -530,14 +545,14 @@ describe("RaptorDepartAfterQuery", () => {
     const interchange = {};
     const calendar = { serviceId: "2", startDate: 20181001, endDate: 20181015, days: allDays, include: {}, exclude: {}};
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(
+    const raptor = RaptorAlgorithmFactory.create(
       trips,
       transfers,
       interchange,
-      Object.assign({}, calendars, { [calendar.serviceId]: calendar }),
-      journeyFactory
+      Object.assign({}, calendars, { [calendar.serviceId]: calendar })
     );
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -579,15 +594,14 @@ describe("RaptorDepartAfterQuery", () => {
     const days = Object.assign({}, allDays, { 1: false });
     const calendar = { serviceId: "2", startDate: 20181001, endDate: 20991231, days: days, include: {}, exclude: {} };
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(
+    const raptor = RaptorAlgorithmFactory.create(
       trips,
       transfers,
       interchange,
-      Object.assign({}, calendars, { [calendar.serviceId]: calendar }),
-      journeyFactory
+      Object.assign({}, calendars, { [calendar.serviceId]: calendar })
     );
-
-    const result = raptor.plan("A", "C", new Date("2018-10-22"), 900);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-22"), 900);
 
     setDefaultTrip(result);
 
@@ -635,15 +649,14 @@ describe("RaptorDepartAfterQuery", () => {
       exclude: {}
     };
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(
+    const raptor = RaptorAlgorithmFactory.create(
       trips,
       transfers,
       interchange,
-      Object.assign({}, calendars, { [calendar.serviceId]: calendar }),
-      journeyFactory
+      Object.assign({}, calendars, { [calendar.serviceId]: calendar })
     );
-
-    const result = raptor.plan("A", "C", new Date("2018-10-22"), 900);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-22"), 900);
 
     setDefaultTrip(result);
 
@@ -691,15 +704,14 @@ describe("RaptorDepartAfterQuery", () => {
       exclude: { 20181022: true }
     };
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(
+    const raptor = RaptorAlgorithmFactory.create(
       trips,
       transfers,
       interchange,
-      Object.assign({}, calendars, { [calendar.serviceId]: calendar }),
-      journeyFactory
+      Object.assign({}, calendars, { [calendar.serviceId]: calendar })
     );
-
-    const result = raptor.plan("A", "C", new Date("2018-10-22"), 900);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-22"), 900);
 
     setDefaultTrip(result);
 
@@ -745,8 +757,9 @@ describe("RaptorDepartAfterQuery", () => {
       ),
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "C", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "C", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -811,8 +824,9 @@ describe("RaptorDepartAfterQuery", () => {
       ),
     ];
 
-    const raptor = RaptorQueryFactory.createDepartAfterQuery(trips, {}, {}, calendars, journeyFactory);
-    const result = raptor.plan("A", "E", new Date("2018-10-16"), 900);
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
 
     setDefaultTrip(result);
 
@@ -829,6 +843,176 @@ describe("RaptorDepartAfterQuery", () => {
     chai.expect(result).to.deep.equal([
       faster
     ]);
+  });
+
+  it("finds journeys that can only be made by waiting for the next day", () => {
+    const trips = [
+      t(
+        st("A", null, 1000),
+        st("B", 1035, 1035),
+        st("C", 1100, null)
+      ),
+      t(
+        st("D", null, 1000),
+        st("B", 1030, 1030),
+        st("E", 1100, null)
+      )
+    ];
+
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory, 2);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
+
+    setDefaultTrip(result);
+
+    const expected = j([
+      st("A", null, 1000),
+      st("B", 1035, 1035),
+    ], [
+      st("B", 1030, 1030),
+      st("E", 1100, null)
+    ]);
+
+    chai.expect(result[0].legs).to.deep.equal(expected.legs);
+  });
+
+  it("adds a day to the arrival time of journeys that are made overnight", () => {
+    const trips = [
+      t(
+        st("A", null, 1000),
+        st("B", 1035, 1035),
+        st("C", 1100, null)
+      ),
+      t(
+        st("D", null, 1000),
+        st("B", 1030, 1030),
+        st("E", 1100, null)
+      )
+    ];
+
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory, 2);
+    const result = query.plan("A", "E", new Date("2018-10-16"), 900);
+
+    setDefaultTrip(result);
+
+    chai.expect(result[0].arrivalTime).to.equal(1100 + 86400);
+  });
+
+  it("increments the day when searching subsequent days", () => {
+    const trips = [
+      t(
+        st("A", null, 1000),
+        st("B", 1030, 1030),
+        st("C", 1100, null)
+      ),
+      t(
+        st("D", null, 1000),
+        st("B", 1035, 1035),
+        st("E", 1100, null)
+      )
+    ];
+
+    trips[1].serviceId = "2";
+
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory, 2);
+    const result = query.plan("A", "E", new Date("2018-12-31"), 900);
+
+    setDefaultTrip(result);
+
+    chai.expect(result[0].arrivalTime).to.equal(1100 + 86400);
+  });
+
+  it("uses all results from every day", () => {
+    const trips = [
+      t(
+        st("A", null, 1900),
+        st("B", 1930, 1935),
+        st("C", 2000, null)
+      ),
+      t(
+        st("B", null, 1035),
+        st("D", 1100, null)
+      ),
+      t(
+        st("D", null, 1100),
+        st("E", 1130, null)
+      ),
+      t(
+        st("C", null, 1130),
+        st("E", 1200, null)
+      )
+    ];
+
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory, 2);
+    const result = query.plan("A", "E", new Date("2019-04-23"), 900);
+
+    setDefaultTrip(result);
+    const change = j(
+      [
+        st("A", null, 1900),
+        st("B", 1930, 1935)
+      ],
+      [
+        st("B", null, 1035),
+        st("D", 1100, null)
+      ],
+      [
+        st("D", null, 1100),
+        st("E", 1130, null)
+      ]
+    );
+
+    const noChange = j(
+      [
+        st("A", null, 1900),
+        st("B", 1930, 1935),
+        st("C", 2000, null)
+      ],
+      [
+        st("C", null, 1130),
+        st("E", 1200, null)
+      ]
+    );
+
+    const expected = [
+      noChange,
+      change,
+    ];
+
+    expected.forEach(journey => journey.arrivalTime += 86400);
+
+    chai.expect(result).to.deep.equal(expected);
+  });
+
+  it("does not return overnight journeys that cannot be made", () => {
+    const trips = [
+      t(
+        st("A", null, 86000),
+        st("B", 86400, 86400),
+        st("C", 86400 + 3600 + 3600, null)
+      ),
+      t(
+        st("C", null, 3600),
+        st("D", 3635, 3635),
+        st("E", 3700, null)
+      ),
+      t(
+        st("C", null, 3600 + 3600),
+        st("D", 3635 + 3600, 3635 + 3600),
+        st("E", 3700 + 3600, null)
+      )
+    ];
+
+    const raptor = RaptorAlgorithmFactory.create(trips, {}, {}, calendars);
+    const query = new DepartAfterQuery(raptor, journeyFactory, 2);
+    const result = query.plan("A", "E", new Date("2018-12-31"), 50000);
+
+    setDefaultTrip(result);
+
+    chai.expect(result[0].arrivalTime).to.equal(86400 + 3700 + 3600);
   });
 
 });
